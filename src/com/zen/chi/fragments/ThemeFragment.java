@@ -24,11 +24,13 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.provider.SearchIndexableResource;
+import android.provider.Settings;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v14.preference.PreferenceFragment;
+import android.util.Log;
 
 import com.android.settings.R;
 import com.android.internal.logging.nano.MetricsProto;
@@ -46,12 +48,14 @@ public class ThemeFragment extends SettingsPreferenceFragment
 
     private static final String KEY_ACCENT_PICKER = "accent_picker";
     private static final String KEY_BASE_THEME = "base_theme";
+    private static final String KEY_SYSUI_THEME = "systemui_theme";
     private static final String BASE_THEME_CATEGORY = "android.base_theme";
     private Preference mSystemThemeColor;
     private ListPreference mSystemThemeBase;
     private Fragment mCurrentFragment = this;
     private OverlayManagerWrapper mOverlayService;
     private PackageManager mPackageManager;
+    private ListPreference mSystemUiThemePref;
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -61,6 +65,10 @@ public class ThemeFragment extends SettingsPreferenceFragment
                 return true;
             mOverlayService.setEnabledExclusiveInCategory((String) newValue, UserHandle.myUserId());
             mSystemThemeBase.setSummary(getCurrentTheme(BASE_THEME_CATEGORY));
+        } else if (preference == mSystemUiThemePref) {
+            int value = Integer.parseInt((String) newValue);
+            Settings.Secure.putInt(getContext().getContentResolver(), Settings.Secure.THEME_MODE, value);
+            mSystemUiThemePref.setSummary(mSystemUiThemePref.getEntries()[value]);
         }
         return true;
     }
@@ -75,6 +83,7 @@ public class ThemeFragment extends SettingsPreferenceFragment
         mPackageManager = getActivity().getPackageManager();
         setupAccentPicker();
         setupBasePref();
+        setupStylePref();
     }
 
     private void setupAccentPicker() {
@@ -100,6 +109,15 @@ public class ThemeFragment extends SettingsPreferenceFragment
         mSystemThemeBase.setEntryValues(pkgs);
         mSystemThemeBase.setValue(getTheme(BASE_THEME_CATEGORY));
         mSystemThemeBase.setOnPreferenceChangeListener(this);
+    }
+
+    private void setupStylePref() {
+        mSystemUiThemePref = (ListPreference) findPreference(KEY_SYSUI_THEME);
+        int value = Settings.Secure.getInt(getContext().getContentResolver(), Settings.Secure.THEME_MODE, 0);
+        int index = mSystemUiThemePref.findIndexOfValue(Integer.toString(value));
+        mSystemUiThemePref.setValue(Integer.toString(value));
+        mSystemUiThemePref.setSummary(mSystemUiThemePref.getEntries()[index]);
+        mSystemUiThemePref.setOnPreferenceChangeListener(this);
     }
 
     public void updateEnableState() {
