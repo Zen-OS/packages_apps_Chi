@@ -16,4 +16,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/misc_main">
 
+ <PreferenceCategory
+    android:title="@string/lockscreen_title">
+
+    <com.zen.chi.preferences.SystemSettingSwitchPreference
+        android:key="lockscreen_battery_info"
+        android:title="@string/lockscreen_battery_info_title"
+        android:summary="@string/lockscreen_battery_info_summary"
+        android:defaultValue="true" />
+
+ </PreferenceCategory>
+
 </PreferenceScreen>
