@@ -16,4 +16,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/misc_main">
 
+    <com.zen.chi.preferences.SecureSettingSwitchPreference
+        android:key="qs_brightness_position_bottom"
+        android:title="@string/brightness_slider_bottom_title"
+        android:summary="@string/brightness_slider_bottom_summary"
+        android:defaultValue="false" />
+
 </PreferenceScreen>
