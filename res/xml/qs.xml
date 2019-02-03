@@ -27,4 +27,10 @@
         android:summary="@string/brightness_slider_bottom_summary"
         android:defaultValue="false" />
 
+    <com.zen.chi.preferences.SystemSettingSwitchPreference
+        android:key="qs_tile_title_visibility"
+        android:title="@string/qs_tile_title_visibility_title"
+        android:summary="@string/qs_tile_title_visibility_summary"
+        android:defaultValue="true" />
+
 </PreferenceScreen>
