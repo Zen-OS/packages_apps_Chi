@@ -91,4 +91,11 @@
     <string name="powermenu_lockscreen_title">Lockscreen visibility</string>
     <string name="powermenu_lockscreen_summary">Enable the ability to show and use the power menu dialog while on the lockscreen</string>
 
+    <!-- Corners -->
+    <string name="corners_category">Corners</string>
+    <string name="corner_radius">Rounded corner radius</string>
+    <string name="content_padding">Corner content padding</string>
+    <string name="corner_fwvals">Use framework values</string>
+    <string name="corner_fwvals_summary">Useful if the device actually has rounded corners</string>
+
 </resources>
