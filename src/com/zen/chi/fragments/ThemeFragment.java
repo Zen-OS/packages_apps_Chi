@@ -41,6 +41,7 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.wrapper.OverlayManagerWrapper;
 import com.android.settings.wrapper.OverlayManagerWrapper.OverlayInfo;
 import com.zen.chi.preferences.CustomSeekBarPreference;
+import com.zen.chi.preferences.SecureSettingSwitchPreference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,7 @@ public class ThemeFragment extends SettingsPreferenceFragment
 
     private static final String SYSUI_ROUNDED_SIZE = "sysui_rounded_size";
     private static final String SYSUI_ROUNDED_CONTENT_PADDING = "sysui_rounded_content_padding";
+    private static final String SYSUI_ROUNDED_FWVALS = "sysui_rounded_fwvals";
 
     private Preference mSystemThemeColor;
     private ListPreference mSystemThemeBase;
@@ -63,6 +65,7 @@ public class ThemeFragment extends SettingsPreferenceFragment
     private PackageManager mPackageManager;
     private CustomSeekBarPreference mCornerRadius;
     private CustomSeekBarPreference mContentPadding;
+    private SecureSettingSwitchPreference mRoundedFwvals;
     private ListPreference mSystemUiThemePref;
 
     @Override
@@ -83,6 +86,8 @@ public class ThemeFragment extends SettingsPreferenceFragment
             int value = Integer.parseInt((String) newValue);
             Settings.Secure.putInt(getContext().getContentResolver(), Settings.Secure.THEME_MODE, value);
             mSystemUiThemePref.setSummary(mSystemUiThemePref.getEntries()[value]);
+        } else if (preference == mRoundedFwvals) {
+            restoreCorners();
         }
         return true;
     }
@@ -128,33 +133,53 @@ public class ThemeFragment extends SettingsPreferenceFragment
 
     private void setupCornerPrefs() {
         Resources res = null;
-        Context mContext = getContext();
+        Context ctx = getContext();
+        float density = Resources.getSystem().getDisplayMetrics().density;
 
         try {
-            res = mContext.getPackageManager().getResourcesForApplication("com.android.systemui");
+            res = ctx.getPackageManager().getResourcesForApplication("com.android.systemui");
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
 
-        float displayDensity = getResources().getDisplayMetrics().density;
-
         // Rounded Corner Radius
-        int resourceIdRadius = res.getIdentifier("com.android.systemui:dimen/rounded_corner_radius", null, null);
         mCornerRadius = (CustomSeekBarPreference) findPreference(SYSUI_ROUNDED_SIZE);
-        int cornerRadius = Settings.Secure.getInt(mContext.getContentResolver(), Settings.Secure.SYSUI_ROUNDED_SIZE,
-                (int) (res.getDimension(resourceIdRadius) / displayDensity));
-        mCornerRadius.setValue(cornerRadius / 1);
         mCornerRadius.setOnPreferenceChangeListener(this);
+        int resourceIdRadius = res.getIdentifier("com.android.systemui:dimen/rounded_corner_radius", null, null);
+        int cornerRadius = Settings.Secure.getInt(ctx.getContentResolver(), Settings.Secure.SYSUI_ROUNDED_SIZE,
+                (int) (res.getDimension(resourceIdRadius) / density));
+        mCornerRadius.setValue(cornerRadius / 1);
 
         // Rounded Content Padding
+        mContentPadding = (CustomSeekBarPreference) findPreference(SYSUI_ROUNDED_CONTENT_PADDING);
+        mContentPadding.setOnPreferenceChangeListener(this);
         int resourceIdPadding = res.getIdentifier("com.android.systemui:dimen/rounded_corner_content_padding", null,
                 null);
-        mContentPadding = (CustomSeekBarPreference) findPreference(SYSUI_ROUNDED_CONTENT_PADDING);
-        int contentPadding = Settings.Secure.getInt(mContext.getContentResolver(),
+        int contentPadding = Settings.Secure.getInt(ctx.getContentResolver(),
                 Settings.Secure.SYSUI_ROUNDED_CONTENT_PADDING,
-                (int) (res.getDimension(resourceIdPadding) / displayDensity));
+                (int) (res.getDimension(resourceIdPadding) / density));
         mContentPadding.setValue(contentPadding / 1);
-        mContentPadding.setOnPreferenceChangeListener(this);
+
+        // Rounded use Framework Values
+        mRoundedFwvals = (SecureSettingSwitchPreference) findPreference(SYSUI_ROUNDED_FWVALS);
+        mRoundedFwvals.setOnPreferenceChangeListener(this);
+    }
+
+    private void restoreCorners() {
+        Resources res = null;
+        float density = Resources.getSystem().getDisplayMetrics().density;
+
+        try {
+            res = getContext().getPackageManager().getResourcesForApplication("com.android.systemui");
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        int resourceIdRadius = res.getIdentifier("com.android.systemui:dimen/rounded_corner_radius", null, null);
+        int resourceIdPadding = res.getIdentifier("com.android.systemui:dimen/rounded_corner_content_padding", null,
+                null);
+        mCornerRadius.setValue((int) (res.getDimension(resourceIdRadius) / density));
+        mContentPadding.setValue((int) (res.getDimension(resourceIdPadding) / density));
     }
 
     private void setupStylePref() {
