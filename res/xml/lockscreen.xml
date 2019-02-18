@@ -14,10 +14,8 @@
      limitations under the License.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/misc_main">
-
- <PreferenceCategory
-    android:title="@string/lockscreen_title">
+    android:title="@string/lockscreen_main"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <com.zen.chi.preferences.SystemSettingSwitchPreference
         android:key="lockscreen_battery_info"
@@ -29,7 +27,5 @@
         android:key="double_tap_sleep_anywhere"
         android:title="@string/double_tap_sleep_lockscreen"
         android:defaultValue="false" />
-
- </PreferenceCategory>
 
 </PreferenceScreen>

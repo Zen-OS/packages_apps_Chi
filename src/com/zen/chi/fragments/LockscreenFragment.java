@@ -34,7 +34,7 @@ import com.android.settings.SettingsPreferenceFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MiscFragment extends SettingsPreferenceFragment
+public class LockscreenFragment extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener, Indexable {
 
     @Override
@@ -45,7 +45,7 @@ public class MiscFragment extends SettingsPreferenceFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.misc);
+        addPreferencesFromResource(R.xml.lockscreen);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class MiscFragment extends SettingsPreferenceFragment
         public List<SearchIndexableResource> getXmlResourcesToIndex(Context context, boolean enabled) {
             List<SearchIndexableResource> indexables = new ArrayList<>();
             SearchIndexableResource indexable = new SearchIndexableResource(context);
-            indexable.xmlResId = R.xml.misc;
+            indexable.xmlResId = R.xml.lockscreen;
             indexables.add(indexable);
             return indexables;
         }

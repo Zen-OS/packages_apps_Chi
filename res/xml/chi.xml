@@ -52,10 +52,10 @@
         android:icon="@drawable/ic_notification" />
 
     <Preference
-        android:key="misc_settings"
-        android:title="@string/misc_main"
-        android:summary="@string/misc_main_summary"
-        android:fragment="com.zen.chi.fragments.MiscFragment"
-        android:icon="@drawable/ic_misc" />
+        android:key="lockscreen_settings"
+        android:title="@string/lockscreen_main"
+        android:summary="@string/lockscreen_main_summary"
+        android:fragment="com.zen.chi.fragments.LockscreenFragment"
+        android:icon="@drawable/ic_lockscreen" />
 
 </PreferenceScreen>
