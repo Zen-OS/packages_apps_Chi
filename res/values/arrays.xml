@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2018 ZenOS Open Source Project
+
+<!-- Copyright (C) 2019 ZenOS
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,13 +14,17 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/statusbar_main">
+<resources>
 
-    <Preference
-        android:key="battery_settings"
-        android:title="@string/battery_style_category_title"
-        android:fragment="com.zen.chi.fragments.StatusBarBattery"
-        android:icon="@drawable/ic_battery"/>
-
-</PreferenceScreen>
+    <!-- Statusbar battery percentage -->
+    <string-array name="status_bar_battery_percentage_entries" translatable="false">
+        <item>@string/status_bar_battery_percentage_default</item>
+        <item>@string/status_bar_battery_percentage_text_next</item>
+        <item>@string/status_bar_battery_percentage_text_inside</item>
+    </string-array>
+    <string-array name="status_bar_battery_percentage_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>
