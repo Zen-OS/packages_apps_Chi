@@ -57,6 +57,7 @@ public class ThemeFragment extends SettingsPreferenceFragment
     private static final String SYSUI_ROUNDED_SIZE = "sysui_rounded_size";
     private static final String SYSUI_ROUNDED_CONTENT_PADDING = "sysui_rounded_content_padding";
     private static final String SYSUI_ROUNDED_FWVALS = "sysui_rounded_fwvals";
+    private static final String QS_PANEL_ALPHA = "qs_panel_alpha";
 
     private Preference mSystemThemeColor;
     private ListPreference mSystemThemeBase;
@@ -67,6 +68,8 @@ public class ThemeFragment extends SettingsPreferenceFragment
     private CustomSeekBarPreference mContentPadding;
     private SecureSettingSwitchPreference mRoundedFwvals;
     private ListPreference mSystemUiThemePref;
+
+    private CustomSeekBarPreference mQsPanelAlpha;
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -86,6 +89,11 @@ public class ThemeFragment extends SettingsPreferenceFragment
             int value = Integer.parseInt((String) newValue);
             Settings.Secure.putInt(getContext().getContentResolver(), Settings.Secure.THEME_MODE, value);
             mSystemUiThemePref.setSummary(mSystemUiThemePref.getEntries()[value]);
+        } else if (preference == mQsPanelAlpha) {
+            int bgAlpha = (Integer) newValue;
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.QS_PANEL_BG_ALPHA, bgAlpha,
+                    UserHandle.USER_CURRENT);
         } else if (preference == mRoundedFwvals) {
             restoreCorners();
         }
@@ -104,6 +112,7 @@ public class ThemeFragment extends SettingsPreferenceFragment
         setupBasePref();
         setupCornerPrefs();
         setupStylePref();
+        setupQsPrefs();
     }
 
     private void setupAccentPicker() {
@@ -189,6 +198,14 @@ public class ThemeFragment extends SettingsPreferenceFragment
         mSystemUiThemePref.setValue(Integer.toString(value));
         mSystemUiThemePref.setSummary(mSystemUiThemePref.getEntries()[index]);
         mSystemUiThemePref.setOnPreferenceChangeListener(this);
+    }
+
+    private void setupQsPrefs() {
+        mQsPanelAlpha = (CustomSeekBarPreference) findPreference(QS_PANEL_ALPHA);
+        int qsPanelAlpha = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.QS_PANEL_BG_ALPHA, 255, UserHandle.USER_CURRENT);
+        mQsPanelAlpha.setValue(qsPanelAlpha);
+        mQsPanelAlpha.setOnPreferenceChangeListener(this);
     }
 
     public void updateEnableState() {
