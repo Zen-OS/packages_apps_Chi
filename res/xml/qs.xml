@@ -16,6 +16,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/qs_main">
 
+    <ListPreference
+         android:key="qs_tile_style"
+         android:title="@string/qs_tile_style_title"
+         android:persistent="false"
+         android:entries="@array/qs_selector_entries"
+         android:entryValues="@array/qs_selector_values" />
+
     <Preference
         android:key="qs_rows_columns"
         android:fragment="com.zen.chi.fragments.QsRowsColumns"
