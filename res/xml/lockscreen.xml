@@ -17,16 +17,15 @@
     android:title="@string/lockscreen_main"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <com.zen.chi.preferences.SystemSettingSwitchPreference
-        android:key="lockscreen_battery_info"
-        android:title="@string/lockscreen_battery_info_title"
-        android:summary="@string/lockscreen_battery_info_summary"
-        android:defaultValue="true" />
+    <PreferenceCategory
+        android:title="@string/ls_clock_title">
 
-    <com.zen.chi.preferences.SystemSettingSwitchPreference
-        android:key="double_tap_sleep_anywhere"
-        android:title="@string/double_tap_sleep_lockscreen"
-        android:defaultValue="false" />
+    <com.zen.chi.preferences.SystemSettingListPreference
+        android:key="lockscreen_clock_selection"
+        android:title="@string/lockscreen_clock_selection_title"
+        android:entries="@array/lockscreen_clock_selection_entries"
+        android:entryValues="@array/lockscreen_clock_selection_values"
+        android:defaultValue="0" />
 
     <com.zen.chi.preferences.SystemSettingSwitchPreference
         android:key="lockscreen_clock"
@@ -40,11 +39,22 @@
         android:summary="@string/lockscreen_info_summary"
         android:defaultValue="true" />
 
-    <com.zen.chi.preferences.SystemSettingListPreference
-        android:key="lockscreen_clock_selection"
-        android:title="@string/lockscreen_clock_selection_title"
-        android:entries="@array/lockscreen_clock_selection_entries"
-        android:entryValues="@array/lockscreen_clock_selection_values"
-        android:defaultValue="0" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/ls_options_title">
+
+    <com.zen.chi.preferences.SystemSettingSwitchPreference
+        android:key="double_tap_sleep_anywhere"
+        android:title="@string/double_tap_sleep_lockscreen"
+        android:defaultValue="false" />
+
+    <com.zen.chi.preferences.SystemSettingSwitchPreference
+        android:key="lockscreen_battery_info"
+        android:title="@string/lockscreen_battery_info_title"
+        android:summary="@string/lockscreen_battery_info_summary"
+        android:defaultValue="true" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

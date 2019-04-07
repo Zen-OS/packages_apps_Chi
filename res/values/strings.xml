@@ -48,6 +48,9 @@
     <string name="settings_icon_tint">Tint settings icons</string>
     <string name="settings_icon_tint_summary">Show off that accent 😉</string>
 
+    <!--Powermenu title-->
+    <string name="powermenu_title">Powermenu</string>
+
     <!-- Power Menu -->
     <string name="powermenu_reboot_title">Restart</string>
     <string name="powermenu_advanced_restart_title">Advanced restart</string>
@@ -133,6 +136,12 @@
     <string name="qs_bg_accent_summary">Set QS background color from System Accent</string>
     <string name="qs_bg_use_fw">Use default colors</string>
     <string name="qs_bg_use_fw_summary">Disable custom quick settings styles for external theme engines</string>
+
+    <!-- LS Clock Options -->
+    <string name="ls_clock_title">LS Clock Options</string>
+
+    <!-- Misc LS Options -->
+    <string name="ls_options_title">Misc LS Options</string>
 
     <!-- Lockscreen items -->
     <string name="lockscreen_clock_title">Clock widget</string>

@@ -16,6 +16,9 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/buttonandgesture_main">
 
+    <PreferenceCategory
+        android:title="@string/powermenu_title">
+
     <com.zen.chi.preferences.SecureSettingSwitchPreference
         android:key="reboot_in_power_menu"
         android:title="@string/powermenu_reboot_title"
@@ -42,5 +45,7 @@
         android:title="@string/powermenu_lockscreen_title"
         android:summary="@string/powermenu_lockscreen_summary"
         android:defaultValue="true" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
