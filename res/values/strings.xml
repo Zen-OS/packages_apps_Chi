@@ -16,6 +16,8 @@
 <resources>
     <string name="chi_dashboard_title">Chi</string>
     <string name="chi_dashboard_summary">Lifeforce behind customizations</string>
+    <string name="system_main">System</string>
+    <string name="system_main_summary">Various system extensions</string>
     <string name="statusbar_main">Statusbar</string>
     <string name="statusbar_main_summary">Change zen status styles</string>
     <string name="qs_main">Quick settings</string>

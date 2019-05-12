@@ -17,6 +17,13 @@
     android:title="@string/chi_dashboard_title">
 
     <Preference
+        android:key="system_settings"
+        android:title="@string/system_main" 
+        android:summary="@string/system_main_summary"
+        android:fragment="com.zen.chi.fragments.SystemSettingsFragment"
+        android:icon="@drawable/ic_system" />
+
+    <Preference
         android:key="statusbar_settings"
         android:title="@string/statusbar_main"
         android:summary="@string/statusbar_main_summary"
