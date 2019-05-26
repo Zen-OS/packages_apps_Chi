@@ -54,7 +54,9 @@
         <item>@string/lockscreen_clock_selection_sammy</item>
         <item>@string/lockscreen_clock_selection_sammy_bold</item>
         <item>@string/lockscreen_clock_selection_sammy_accent</item>
+        <item>@string/lockscreen_clock_selection_sammy_accent_bold</item>
         <item>@string/lockscreen_clock_selection_sammy_accent_alt</item>
+        <item>@string/lockscreen_clock_selection_sammy_accent_alt_bold</item>
         <item>@string/lockscreen_clock_selection_analog_spidey</item>
         <item>@string/lockscreen_clock_selection_analog_avengers</item>
     </string-array>
@@ -69,6 +71,8 @@
         <item>6</item>
         <item>7</item>
         <item>8</item>
+        <item>9</item>
+        <item>10</item>
     </string-array>
 
     <!-- QS tile styles -->
