@@ -59,6 +59,7 @@
         <item>@string/lockscreen_clock_selection_sammy_accent_alt_bold</item>
         <item>@string/lockscreen_clock_selection_analog_spidey</item>
         <item>@string/lockscreen_clock_selection_analog_avengers</item>
+        <item>@string/lockscreen_clock_selection_text</item>
     </string-array>
 
     <string-array name="lockscreen_clock_selection_values" translatable="false">
@@ -73,6 +74,7 @@
         <item>8</item>
         <item>9</item>
         <item>10</item>
+        <item>11</item>
     </string-array>
 
     <!-- QS tile styles -->

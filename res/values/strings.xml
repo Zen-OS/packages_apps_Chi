@@ -165,6 +165,7 @@
     <string name="lockscreen_clock_selection_sammy_accent_alt">Sammy with accent (alt)</string>
     <string name="lockscreen_clock_selection_sammy_accent_alt_bold">Sammy with accent (alt-bold)</string>
     <string name="lockscreen_clock_selection_sammy_accent_bold">Sammy with accent (bold)</string>
+    <string name="lockscreen_clock_selection_text">Q Text</string>
 
     <!-- QS tile styles -->
     <string name="qs_tile_style_title">QS tile style</string>
