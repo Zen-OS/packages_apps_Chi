@@ -141,10 +141,10 @@
     <string name="qs_bg_use_fw_summary">Disable custom quick settings styles for external theme engines</string>
 
     <!-- LS Clock Options -->
-    <string name="ls_clock_title">LS Clock Options</string>
+    <string name="ls_clock_title">Lockscreen Clock Options</string>
 
     <!-- Misc LS Options -->
-    <string name="ls_options_title">Misc LS Options</string>
+    <string name="ls_options_title">Misc Lockscreen Options</string>
 
     <!-- Lockscreen items -->
     <string name="lockscreen_clock_title">Clock widget</string>
@@ -233,5 +233,8 @@
 
     <!-- Navbar -->
     <string name="navbar_visibility">Allow navigation bar</string>
+
+    <!--Navbar & gesture title -->
+    <string name="nav_gesture_title">Navigations and Gestures</string>
 
 </resources>
