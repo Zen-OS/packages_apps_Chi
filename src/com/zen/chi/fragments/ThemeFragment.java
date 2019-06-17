@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 ZenOS Open Source Project
+ * Copyright (C) 2019 Zen-OS
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.SystemProperties;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.support.v7.preference.ListPreference;
@@ -53,7 +54,6 @@ import net.margaritov.preference.colorpicker.ColorPickerPreference;
 public class ThemeFragment extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener, Indexable {
 
-    private static final String KEY_ACCENT_PICKER = "accent_picker";
     private static final String KEY_BASE_THEME = "base_theme";
     private static final String KEY_SYSUI_THEME = "systemui_theme";
     private static final String BASE_THEME_CATEGORY = "android.base_theme";
@@ -63,10 +63,12 @@ public class ThemeFragment extends SettingsPreferenceFragment
     private static final String SYSUI_ROUNDED_FWVALS = "sysui_rounded_fwvals";
     private static final String QS_PANEL_ALPHA = "qs_panel_alpha";
     private static final String QS_PANEL_COLOR = "qs_panel_color";
+    private static final String ACCENT_COLOR = "accent_color";
+    private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
 
     private Handler mHandler;
 
-    private Preference mSystemThemeColor;
+    private ColorPickerPreference mThemeColor;
     private ListPreference mSystemThemeBase;
     private Fragment mCurrentFragment = this;
     private OverlayManagerWrapper mOverlayService;
@@ -120,6 +122,13 @@ public class ThemeFragment extends SettingsPreferenceFragment
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.QS_PANEL_BG_COLOR, bgColor,
                     UserHandle.USER_CURRENT);
+        } else if (preference == mThemeColor) {
+            int color = (Integer) newValue;
+            String hexColor = String.format("%08X", (0xFFFFFFFF & color));
+            SystemProperties.set(ACCENT_COLOR_PROP, hexColor);
+            mOverlayService.reloadAndroidAssets(UserHandle.USER_CURRENT);
+            mOverlayService.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
+            mOverlayService.reloadAssets("com.android.systemui", UserHandle.USER_CURRENT);
         } else if (preference == mRoundedFwvals) {
             restoreCorners();
         }
@@ -135,16 +144,11 @@ public class ThemeFragment extends SettingsPreferenceFragment
                 : null;
         mPackageManager = getActivity().getPackageManager();
         mHandler = new Handler();
-        setupAccentPicker();
         setupBasePref();
         setupCornerPrefs();
         setupStylePref();
         setupQsPrefs();
-    }
-
-    private void setupAccentPicker() {
-        mSystemThemeColor = (Preference) findPreference(KEY_ACCENT_PICKER);
-        mSystemThemeColor.setSummary(getCurrentTheme(OverlayInfo.CATEGORY_THEME));
+        setupAccentPref();
     }
 
     private void setupBasePref() {
@@ -243,23 +247,19 @@ public class ThemeFragment extends SettingsPreferenceFragment
         mQsPanelColor.setOnPreferenceChangeListener(this);
     }
 
-    public void updateEnableState() {
-        if (mSystemThemeColor == null) {
-            return;
-        }
-        mSystemThemeColor.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                AccentPicker.show(mCurrentFragment, preference);
-                return true;
-            }
-        });
+    private void setupAccentPref() {
+        mThemeColor = (ColorPickerPreference) findPreference(ACCENT_COLOR);
+        String colorVal = SystemProperties.get(ACCENT_COLOR_PROP, "-1");
+        int color = "-1".equals(colorVal)
+                ? Color.WHITE
+                : Color.parseColor("#" + colorVal);
+        mThemeColor.setNewPreviewColor(color);
+        mThemeColor.setOnPreferenceChangeListener(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateEnableState();
     }
 
     @Override
