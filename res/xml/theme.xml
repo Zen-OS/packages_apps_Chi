@@ -82,6 +82,13 @@
     <PreferenceCategory
         android:key="qs_category"
         android:title="@string/qs_themes_category_title" >
+        <com.zen.chi.preferences.CustomSeekBarPreference
+            android:key="qs_panel_alpha"
+            android:title="@string/qs_panel_alpha_title"
+            android:max="100"
+            settings:min="0"
+            settings:units="" />
+
         <com.zen.chi.preferences.SystemSettingSwitchPreference
             android:key="qs_panel_bg_use_fw"
             android:title="@string/qs_bg_use_fw"
@@ -94,14 +101,6 @@
             android:title="@string/qs_panel_color_title"
             android:defaultValue="0xffffff"
             android:persistent="false"
-            android:dependency="qs_panel_bg_use_fw" />
-
-        <com.zen.chi.preferences.CustomSeekBarPreference
-            android:key="qs_panel_alpha"
-            android:title="@string/qs_panel_alpha_title"
-            android:max="100"
-            settings:min="0"
-            settings:units=""
             android:dependency="qs_panel_bg_use_fw" />
 
         <com.zen.chi.preferences.SystemSettingSwitchPreference
