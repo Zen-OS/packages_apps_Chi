@@ -247,4 +247,8 @@
     <string name="gesture_action_timeout_title">Swipe trigger timeout</string>
     <string name="gesture_action_timeout_summary">Timeout before the gesture action is started</string>
 
+    <!--3-Finger screenshot-->
+    <string name="three_finger_gesture">Three finger gesture</string>
+    <string name="three_finger_gesture_summary">Swipe three finger to screenshot</string>
+
 </resources>
