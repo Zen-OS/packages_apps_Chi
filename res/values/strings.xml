@@ -170,9 +170,10 @@
     <!-- QS tile styles -->
     <string name="qs_tile_style_title">QS tile style</string>
     <string name="qstile_default">Default</string>
-    <string name="qstile_circle_trim">Circle with trim</string>
-    <string name="qstile_dual_tone_circle">Dual-toned circle</string>
-    <string name="qstile_squircle_trim">Squircle with trim</string>
+    <string name="qstile_square">Square</string>
+    <string name="qstile_rounded_square">Rounded square</string>
+    <string name="qstile_squircle">Squircle</string>
+    <string name="qstile_tear_drop">Tear drop</string>
     <string name="qstile_circle_gradient">Circle with Gradient</string>
     <string name="qstile_wavey">Wavey</string>
     <string name="qstile_circle_dualtone">Circle with Dual Tone</string>
