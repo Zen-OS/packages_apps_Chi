@@ -298,4 +298,7 @@
     <!-- Navbar tuner -->
     <string name="navbar_tuner_title">Navigation bar settings</string>
 
+    <!-- Statusbar tuner -->
+    <string name="statusbar_tuner_title">Status bar icons customization</string>
+
 </resources>
