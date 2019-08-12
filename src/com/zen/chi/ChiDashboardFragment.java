@@ -50,6 +50,8 @@ import java.util.Set;
 public class ChiDashboardFragment extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener, Indexable {
 
+    private static final String PREF_KEY_CUTOUT = "cutout_settings";
+
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.CHI;
@@ -59,6 +61,14 @@ public class ChiDashboardFragment extends SettingsPreferenceFragment
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.chi);
+        Preference mCutoutPref = (Preference) findPreference(PREF_KEY_CUTOUT);
+        if (!hasPhysicalDisplayCutout(getContext()))
+            getPreferenceScreen().removePreference(mCutoutPref);
+    }
+
+    private static boolean hasPhysicalDisplayCutout(Context context) {
+        return context.getResources().getBoolean(
+                com.android.internal.R.bool.config_physicalDisplayCutout);
     }
 
     @Override
