@@ -15,7 +15,16 @@
     limitations under the License.
 -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/system_main">
+<PreferenceScreen
+       xmlns:android="http://schemas.android.com/apk/res/android"
+       android:title="@string/system_main"
+       xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+
+    <com.zen.chi.preferences.SystemSettingSwitchPreference
+        android:key="sensor_block"
+        android:icon="@drawable/ic_lockdown"
+        android:title="@string/sensor_block_title"
+        android:summary="@string/sensor_block_summary"
+        android:defaultValue="false" />
 
 </PreferenceScreen>
