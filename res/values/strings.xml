@@ -62,10 +62,6 @@
     <string name="powermenu_lockdown_title">Lockdown</string>
     <string name="powermenu_screenshot_title">Screenshot</string>
 
-    <!-- Lockscreen battery info indicator  -->
-    <string name="lockscreen_battery_info_title">Lockscreen charging info</string>
-    <string name="lockscreen_battery_info_summary">Display negociated charger max current and voltage and battery temperature on lockscreen while charging</string>
-
     <!-- Brightness slider tweaks -->
     <string name="brightness_slider_bottom_title">Bottom brightness slider</string>
     <string name="brightness_slider_bottom_summary">Show brightness slider on the bottom of the quick settings panel</string>

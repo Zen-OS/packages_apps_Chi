@@ -49,12 +49,6 @@
         android:title="@string/double_tap_sleep_lockscreen"
         android:defaultValue="false" />
 
-    <com.zen.chi.preferences.SystemSettingSwitchPreference
-        android:key="lockscreen_battery_info"
-        android:title="@string/lockscreen_battery_info_title"
-        android:summary="@string/lockscreen_battery_info_summary"
-        android:defaultValue="true" />
-
     <com.zen.chi.preferences.SecureSettingSwitchPreference
         android:key="face_auto_unlock"
         android:title="@string/face_auto_unlock_title"
