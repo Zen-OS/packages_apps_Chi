@@ -102,16 +102,10 @@
     <string name="corner_fwvals_summary">Useful if the device actually has rounded corners</string>
 
     <!-- Network Traffic -->
-    <string name="network_traffic_state_title">Network traffic display</string>
+    <string name="network_traffic_state_title">Show net activity in expanded statusbar</string>
     <string name="network_traffic_autohide_threshold_title">Net activity autohide threshold (KB/s)</string>
     <string name="traffic_title">Traffic indicators</string>
-    <string name="traffic_summary">Show net activity in statusbar</string>
     <string name="network_traffic_title">Network traffic</string>
-    <string name="network_traffic_state_summary">Show upload &amp; download network speed</string>
-    <string name="network_traffic_location_title">Traffic indicator placement</string>
-    <string name="network_traffic_location_summary">Place indicator in either status bar or expanded header (recommended for displays with notch cutouts)</string>
-    <string name="network_traffic_statusbar">Status bar</string>
-    <string name="network_traffic_header">Expanded header</string>
 
     <!-- Hide arrows in Network Traffic indicators -->
     <string name="network_traffic_hidearrow">Hide arrows</string>
